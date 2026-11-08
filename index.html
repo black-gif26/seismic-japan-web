@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seismic Japan — Live Earthquake Watch</title>
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
+    <link
+      href="https://fonts.bunny.net/css?family=fraunces:500,700|sora:400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./vendor/leaflet.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand-block">
+        <p class="brand">Seismic Japan</p>
+        <p class="tagline">Live tremors across the archipelago</p>
+      </div>
+      <div class="status-block">
+        <span class="live-dot" aria-hidden="true"></span>
+        <div class="status-copy">
+          <p class="status-label">Auto-refresh every 3 min</p>
+          <p id="last-updated" class="status-time">Waiting for first fetch…</p>
+        </div>
+        <button id="refresh-btn" class="refresh-btn" type="button" aria-label="Refresh now">
+          Refresh
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="map-pane" aria-label="Japan earthquake map">
+        <div id="map" role="application" aria-label="Interactive map of recent Japan earthquakes"></div>
+        <aside id="quake-detail" class="quake-detail" hidden>
+          <button id="detail-close" class="detail-close" type="button" aria-label="Close details">
+            Close
+          </button>
+          <p class="detail-kicker">Selected event</p>
+          <h2 id="detail-mag" class="detail-mag">—</h2>
+          <p id="detail-place" class="detail-place">—</p>
+          <dl class="detail-grid">
+            <div>
+              <dt>Time (HKT)</dt>
+              <dd id="detail-time">—</dd>
+            </div>
+            <div>
+              <dt>Depth</dt>
+              <dd id="detail-depth">—</dd>
+            </div>
+            <div>
+              <dt>Coordinates</dt>
+              <dd id="detail-coords">—</dd>
+            </div>
+            <div>
+              <dt>Source</dt>
+              <dd id="detail-source">USGS</dd>
+            </div>
+          </dl>
+          <a id="detail-link" class="detail-link" href="#" target="_blank" rel="noopener noreferrer">
+            Open USGS event
+          </a>
+        </aside>
+        <div class="map-legend" aria-hidden="true">
+          <span class="legend-title">Magnitude</span>
+          <span class="legend-item"><i class="swatch m2"></i>2–3</span>
+          <span class="legend-item"><i class="swatch m3"></i>3–4</span>
+          <span class="legend-item"><i class="swatch m4"></i>4–5</span>
+          <span class="legend-item"><i class="swatch m5"></i>5+</span>
+          <span class="legend-item"><i class="swatch watch"></i>Watch zone</span>
+        </div>
+      </section>
+
+      <aside class="side-pane" aria-label="Forecast and news">
+        <section class="forecast-pane" aria-label="Experimental earthquake outlook">
+          <div class="forecast-header">
+            <h2>AI outlook</h2>
+            <p>72-hour statistical watch from open USGS data</p>
+          </div>
+          <p id="forecast-summary" class="forecast-summary">Computing outlook…</p>
+          <p class="forecast-disclaimer">
+            Experimental model — not an official prediction. Follow JMA for warnings.
+          </p>
+          <ul id="forecast-list" class="forecast-list"></ul>
+        </section>
+
+        <section class="news-pane" aria-label="Earthquake-related news">
+          <div class="news-header">
+            <h2>Related news</h2>
+            <p>Japan &amp; Pacific seismic coverage</p>
+          </div>
+          <div id="news-status" class="news-status" role="status"></div>
+          <ul id="news-list" class="news-list"></ul>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Quakes via USGS · Outlook from open catalog model · News via public RSS · Times in
+        <strong>Asia/Hong_Kong (UTC+8)</strong>
+      </p>
+    </footer>
+
+    <script src="./vendor/leaflet.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

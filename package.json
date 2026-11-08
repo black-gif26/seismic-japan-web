@@ -1,0 +1,11 @@
+{
+  "name": "seismic-japan",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "description": "Live Japan earthquake map with AI statistical outlook and related news",
+  "scripts": {
+    "start": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "serve": "python3 -m http.server 4173 --bind 127.0.0.1"
+  }
+}
